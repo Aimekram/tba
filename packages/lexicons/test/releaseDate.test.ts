@@ -10,11 +10,11 @@ describe('parseReleaseDate (the check the lexicon cannot express)', () => {
 
   it.each(['2027-99-99', '2027-13', '2027-00', '2027-04-31', '2027-02-29', '2027-1-5', '27', '2027/03', ' 2027', ''])(
     'rejects %j',
-    (s) => expect(parseReleaseDate(s)).toBeNull(),
+    (value) => expect(parseReleaseDate(value)).toBeNull(),
   )
 
   it('rejects implausible years (typos, and the JS Date 0–99 → 19xx trap)', () => {
-    for (const s of ['0028-02-29', '0202', '1899-12-31', '2101']) expect(parseReleaseDate(s), s).toBeNull()
+    for (const value of ['0028-02-29', '0202', '1899-12-31', '2101']) expect(parseReleaseDate(value), value).toBeNull()
   })
 
   it('knows leap years, including century rules', () => {
