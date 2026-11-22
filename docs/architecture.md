@@ -65,6 +65,7 @@ These also go on the public methodology page.
 | API style | **Open, decide before building the API.** Lean: XRPC lexicons | Types from the `lex` pipeline; other apps can query TBA's index | Lexicon work slows the first API too much → plain JSON + Hono client |
 | Database | SQLite | Free, simple, enough for one city. Index is rebuildable | Distance radar needs PostGIS, or attendance raises backup stakes → hosted Postgres |
 | Query layer | Kysely | Typed SQL, same code on SQLite and Postgres. Bluesky's PDS, AppView and Statusphere all use it (checked) | Unlikely |
+| Docker | Not for development. Compose for the local atproto sandbox once the indexer needs a relay + Jetstream; an image for deploying the server | `.nvmrc` + `packageManager` already pin the toolchain and CI proves a clean setup; containers slow installs and file watching on macOS. `@atproto/dev-env` runs a single PDS in-process | Contributors keep hitting setup problems → dev container. Deploying with SQLite needs a persistent volume |
 | Supabase | Not now | Auth can't do atproto OAuth; functions can't hold Jetstream open. Only its Postgres fits | We move to hosted Postgres |
 
 Don't enter gigs through a database dashboard: gigs are records in the seeder's account, and the index is rebuilt from them.

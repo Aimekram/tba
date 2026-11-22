@@ -6,7 +6,7 @@ TBA: a chronological, algorithm-free music-scene app (bands, releases, gigs) on 
 
 - Node 24+ (`.nvmrc`); Node 23 breaks `lex install`. pnpm workspace.
 - `pnpm install` regenerates lexicon types.
-- `pnpm test` · `pnpm typecheck` · `pnpm check` (CI: vendored lexicons match their pins; needs network)
+- `pnpm test` · `pnpm typecheck` · `pnpm check` (vendored lexicons match their pins; needs network). CI runs all three on every PR.
 - Add a published lexicon: `pnpm --filter @tba/lexicons install-lexicons <nsid>`
 
 ## Never
