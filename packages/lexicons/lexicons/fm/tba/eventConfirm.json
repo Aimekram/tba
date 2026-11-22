@@ -1,0 +1,36 @@
+{
+  "lexicon": 1,
+  "id": "fm.tba.eventConfirm",
+  "description": "DRAFT: may change until published. A band's confirmation or dispute of an event it plays. A trust upgrade, never a publication gate: unconfirmed events are still listed. The indexer counts it only if BOTH hold: the author's DID is on the event's accepted fm.tba.lineup, AND that DID has claimed its TBA band entry (verification ladder). Otherwise a lister could put a puppet account on the lineup and confirm from it. If a band writes several, the most recently received wins (by repo commit order, not createdAt, which the writer controls); deleting the record retracts it.",
+  "defs": {
+    "main": {
+      "type": "record",
+      "key": "tid",
+      "record": {
+        "type": "object",
+        "required": ["subject", "verdict", "createdAt"],
+        "properties": {
+          "subject": {
+            "type": "ref",
+            "ref": "com.atproto.repo.strongRef",
+            "description": "The community.lexicon.calendar.event. The CID pins the exact version confirmed; if the event is edited later, TBA shows 'confirmed an earlier version' until the band re-confirms."
+          },
+          "verdict": {
+            "type": "string",
+            "maxLength": 64,
+            "knownValues": ["fm.tba.eventConfirm#confirmed", "fm.tba.eventConfirm#disputed"]
+          },
+          "note": {
+            "type": "string",
+            "description": "Optional public note, e.g. why it's disputed ('we're not playing this show', 'date moved to 14 March').",
+            "maxLength": 3000,
+            "maxGraphemes": 300
+          },
+          "createdAt": { "type": "string", "format": "datetime" }
+        }
+      }
+    },
+    "confirmed": { "type": "token", "description": "The band confirms it plays this event as listed." },
+    "disputed": { "type": "token", "description": "The band says the listing is wrong." }
+  }
+}

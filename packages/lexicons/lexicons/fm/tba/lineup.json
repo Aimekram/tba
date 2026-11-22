@@ -1,0 +1,54 @@
+{
+  "lexicon": 1,
+  "id": "fm.tba.lineup",
+  "description": "DRAFT: may change until published. Companion record that attaches a lineup (who's playing) and genre tags to a community.lexicon.calendar.event. A separate record rather than extension fields because TBA must be able to annotate events created by other apps (Smoke Signal etc.), whose records it cannot edit. TRUST: anyone can publish a lineup for any event, so consumers should accept one only if the subject is a community.lexicon.calendar.event and the lineup's author is that event's author or a lister the consumer trusts (for TBA: its seeding account and approved producers). Ignore all others. If an accepted author writes several for the same event, the most recently received wins (by repo commit order, not createdAt, which the writer controls).",
+  "defs": {
+    "main": {
+      "type": "record",
+      "key": "tid",
+      "record": {
+        "type": "object",
+        "required": ["subject", "artists", "createdAt"],
+        "properties": {
+          "subject": {
+            "type": "string",
+            "format": "at-uri",
+            "description": "AT URI of the community.lexicon.calendar.event. A plain URI, not a strongRef: the lineup describes the event in every version, so editing the event (e.g. moving the date) must not orphan it."
+          },
+          "artists": {
+            "type": "array",
+            "description": "Lineup in running order, headliner first.",
+            "minLength": 1,
+            "maxLength": 30,
+            "items": { "type": "ref", "ref": "#lineupEntry" }
+          },
+          "genres": {
+            "type": "array",
+            "description": "Optional override. Normally a gig's genres are derived from its artists' genres; set this only when the lineup has bands with unknown genres. Same vocabulary as fm.tba.artist#genres.",
+            "maxLength": 10,
+            "items": { "type": "string", "maxLength": 640, "maxGraphemes": 64 }
+          },
+          "source": {
+            "type": "string",
+            "format": "uri",
+            "description": "Where the lister got the facts (venue calendar page, promoter post). Shown as provenance."
+          },
+          "createdAt": { "type": "string", "format": "datetime" }
+        }
+      }
+    },
+    "lineupEntry": {
+      "type": "object",
+      "required": ["artist"],
+      "description": "One act on the lineup.",
+      "properties": {
+        "artist": { "type": "ref", "ref": "fm.tba.defs#artistRef" },
+        "role": {
+          "type": "string",
+          "maxLength": 64,
+          "knownValues": ["headliner", "support", "special-guest"]
+        }
+      }
+    }
+  }
+}

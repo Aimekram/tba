@@ -1,0 +1,47 @@
+{
+  "lexicon": 1,
+  "id": "fm.tba.defs",
+  "description": "DRAFT: may change until published. Shared definitions used by several fm.tba.* records.",
+  "defs": {
+    "link": {
+      "type": "object",
+      "required": ["uri"],
+      "properties": {
+        "uri": { "type": "string", "format": "uri" },
+        "kind": {
+          "type": "string",
+          "maxLength": 64,
+          "knownValues": ["website", "bandcamp", "spotify", "youtube", "instagram", "merch", "tickets", "other"]
+        },
+        "label": { "type": "string", "maxLength": 640, "maxGraphemes": 64 }
+      }
+    },
+    "externalId": {
+      "type": "object",
+      "required": ["source", "id"],
+      "description": "An identifier for the same thing in another catalogue, used to match and deduplicate entries. Source-neutral on purpose: no single catalogue is built into the record format. The record type says what kind of thing the id names (an artist's id is an artist id; a release's id is a release or release-group id).",
+      "properties": {
+        "source": {
+          "type": "string",
+          "maxLength": 64,
+          "knownValues": ["musicbrainz", "discogs", "wikidata"]
+        },
+        "id": { "type": "string", "minLength": 1, "maxLength": 128 }
+      }
+    },
+    "artistRef": {
+      "type": "object",
+      "required": ["name"],
+      "description": "A reference to a band that may not have claimed its TBA entry yet: name is always present; did once the band has an atproto account; externalIds to match TBA's directory.",
+      "properties": {
+        "name": { "type": "string", "maxLength": 640, "maxGraphemes": 64 },
+        "did": { "type": "string", "format": "did" },
+        "externalIds": {
+          "type": "array",
+          "maxLength": 10,
+          "items": { "type": "ref", "ref": "#externalId" }
+        }
+      }
+    }
+  }
+}

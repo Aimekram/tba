@@ -1,0 +1,2 @@
+# Lexicons fetched by `lex install`: committed (no network needed in CI), collapsed in diffs
+packages/lexicons/lexicons/vendor/** linguist-generated=true
