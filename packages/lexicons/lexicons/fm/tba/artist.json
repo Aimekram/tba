@@ -1,7 +1,7 @@
 {
   "lexicon": 1,
   "id": "fm.tba.artist",
-  "description": "DRAFT (M0). A band/artist profile, published by the band's own account. Doubles as link-in-bio / press-kit-lite. Unclaimed directory entries are NOT records: they live in TBA's database using the same shape.",
+  "description": "DRAFT: may change until published. A band/artist profile, published by the band's own account. Doubles as link-in-bio / press-kit-lite. Unclaimed directory entries are NOT records: they live in TBA's database using the same shape.",
   "defs": {
     "main": {
       "type": "record",

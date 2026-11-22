@@ -1,7 +1,7 @@
 {
   "lexicon": 1,
   "id": "fm.tba.defs",
-  "description": "DRAFT (M0). Shared definitions used by several fm.tba.* records.",
+  "description": "DRAFT: may change until published. Shared definitions used by several fm.tba.* records.",
   "defs": {
     "link": {
       "type": "object",

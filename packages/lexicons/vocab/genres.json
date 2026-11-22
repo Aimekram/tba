@@ -1,5 +1,5 @@
 {
-  "about": "TBA's genre vocabulary. Records' genre fields must use these names exactly. TBA owns this list; edit it here (requests via the 'suggest a genre' form).",
+  "about": "TBA's genre vocabulary. Records' genre fields must use these names exactly. TBA owns this list; edit it here.",
   "seededFrom": {
     "source": "MusicBrainz genre list (core data, CC0)",
     "url": "https://musicbrainz.org/genres",

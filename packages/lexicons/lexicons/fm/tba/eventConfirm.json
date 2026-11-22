@@ -1,7 +1,7 @@
 {
   "lexicon": 1,
   "id": "fm.tba.eventConfirm",
-  "description": "DRAFT (M0, used from v0.5). A band's confirmation or dispute of an event it plays. A trust upgrade, never a publication gate (SCOPE §2). The indexer counts it only if BOTH hold: the author's DID is on the event's accepted fm.tba.lineup, AND that DID has claimed its TBA band entry (verification ladder). Otherwise a lister could put a puppet account on the lineup and confirm from it. If a band writes several, the most recently received wins (by repo commit order, not createdAt, which the writer controls); deleting the record retracts it.",
+  "description": "DRAFT: may change until published. A band's confirmation or dispute of an event it plays. A trust upgrade, never a publication gate: unconfirmed events are still listed. The indexer counts it only if BOTH hold: the author's DID is on the event's accepted fm.tba.lineup, AND that DID has claimed its TBA band entry (verification ladder). Otherwise a lister could put a puppet account on the lineup and confirm from it. If a band writes several, the most recently received wins (by repo commit order, not createdAt, which the writer controls); deleting the record retracts it.",
   "defs": {
     "main": {
       "type": "record",

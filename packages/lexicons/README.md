@@ -4,7 +4,7 @@ TBA's record schemas plus the shared ones it reuses, with generated TypeScript t
 
 ```
 lexicons/
-  fm/tba/        ← ours, hand-written (DRAFT, M0)
+  fm/tba/        ← ours, hand-written (drafts: may change until published)
   vendor/        ← fetched by `lex install`, committed. Never edit, never put our files here
 lexicons.json    ← manifest + pinned CIDs for vendor/
 vocab/
@@ -40,7 +40,7 @@ This follows the layout of Bluesky's own repos (`@atproto/api`, statusphere-exam
 | [`fm.tba.artist`](lexicons/fm/tba/artist.json) | Band |
 | [`fm.tba.release`](lexicons/fm/tba/release.json) | Band |
 | [`fm.tba.lineup`](lexicons/fm/tba/lineup.json) | Event's author or TBA seeder |
-| [`fm.tba.eventConfirm`](lexicons/fm/tba/eventConfirm.json) | Band on the lineup (v0.5) |
+| [`fm.tba.eventConfirm`](lexicons/fm/tba/eventConfirm.json) | Band on the lineup |
 | `community.lexicon.calendar.event` / `.rsvp` | Anyone (shared formats, reused as-is) |
 
-`fm.tba.*` is a placeholder namespace. Rename everything once the product name and domain are final. Fanclub records are deferred to v0.5 and not drafted yet.
+`fm.tba.*` is a placeholder namespace. Rename everything once the product name and domain are final.

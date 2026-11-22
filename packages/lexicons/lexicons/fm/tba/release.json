@@ -1,7 +1,7 @@
 {
   "lexicon": 1,
   "id": "fm.tba.release",
-  "description": "DRAFT (M0). A release (album, EP, single...) posted by a band's own account. Ingested releases (RSS, MusicBrainz) are NOT records: they live in TBA's index, labeled as ingested.",
+  "description": "DRAFT: may change until published. A release (album, EP, single...) posted by a band's own account. Ingested releases (RSS, MusicBrainz) are NOT records: they live in TBA's index, labeled as ingested.",
   "defs": {
     "main": {
       "type": "record",
@@ -31,7 +31,7 @@
           "artworkAlt": { "type": "string", "maxLength": 10000, "maxGraphemes": 1000 },
           "links": {
             "type": "array",
-            "description": "Where to listen/buy. TBA links out; it never hosts audio in v0.",
+            "description": "Where to listen/buy. TBA links out; it doesn't host audio.",
             "maxLength": 20,
             "items": { "type": "ref", "ref": "fm.tba.defs#link" }
           },
