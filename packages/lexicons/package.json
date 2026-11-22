@@ -1,0 +1,29 @@
+{
+  "name": "@tba/lexicons",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/lexicons/index.ts",
+    "./releaseDate": "./src/releaseDate.ts",
+    "./genres": "./src/genres.ts"
+  },
+  "scripts": {
+    "install-lexicons": "lex install --lexicons lexicons/vendor",
+    "build": "lex build --clear --index-file --pretty --import-ext .ts",
+    "prepare": "pnpm build",
+    "pretest": "pnpm build",
+    "test": "vitest run",
+    "pretypecheck": "pnpm build",
+    "typecheck": "tsc -p .",
+    "check": "lex install --lexicons lexicons/vendor --ci"
+  },
+  "dependencies": {
+    "@atproto/lex": "0.6.1"
+  },
+  "devDependencies": {
+    "prettier": "^3.10.1",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.1"
+  }
+}

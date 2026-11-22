@@ -1,0 +1,63 @@
+{
+  "lexicon": 1,
+  "id": "fm.tba.artist",
+  "description": "DRAFT (M0). A band/artist profile, published by the band's own account. Doubles as link-in-bio / press-kit-lite. Unclaimed directory entries are NOT records: they live in TBA's database using the same shape.",
+  "defs": {
+    "main": {
+      "type": "record",
+      "key": "literal:self",
+      "description": "The band's TBA profile. One per account.",
+      "record": {
+        "type": "object",
+        "required": ["name", "createdAt"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 640,
+            "maxGraphemes": 64
+          },
+          "bio": {
+            "type": "string",
+            "maxLength": 10000,
+            "maxGraphemes": 1000
+          },
+          "logo": {
+            "type": "blob",
+            "accept": ["image/png", "image/jpeg", "image/webp"],
+            "maxSize": 1000000
+          },
+          "genres": {
+            "type": "array",
+            "description": "Genre names from TBA's genre vocabulary, exactly as written there (lowercase), e.g. 'atmospheric black metal'. Consumers should ignore values not in the vocabulary (TBA's indexer does). Feeds filter on these.",
+            "maxLength": 10,
+            "items": { "type": "string", "maxLength": 640, "maxGraphemes": 64 }
+          },
+          "origin": {
+            "type": "string",
+            "description": "Where the band is from, human-readable, e.g. 'Bergen, Norway'.",
+            "maxLength": 1280,
+            "maxGraphemes": 128
+          },
+          "links": {
+            "type": "array",
+            "maxLength": 20,
+            "items": { "type": "ref", "ref": "fm.tba.defs#link" }
+          },
+          "bookingContact": {
+            "type": "string",
+            "description": "Public booking contact (email or URL). Optional; the band decides whether to publish it.",
+            "maxLength": 2560,
+            "maxGraphemes": 256
+          },
+          "externalIds": {
+            "type": "array",
+            "description": "The band's ids in other catalogues, used to match its seeded directory entry.",
+            "maxLength": 10,
+            "items": { "type": "ref", "ref": "fm.tba.defs#externalId" }
+          },
+          "createdAt": { "type": "string", "format": "datetime" }
+        }
+      }
+    }
+  }
+}

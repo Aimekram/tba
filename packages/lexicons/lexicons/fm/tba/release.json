@@ -1,0 +1,55 @@
+{
+  "lexicon": 1,
+  "id": "fm.tba.release",
+  "description": "DRAFT (M0). A release (album, EP, single...) posted by a band's own account. Ingested releases (RSS, MusicBrainz) are NOT records: they live in TBA's index, labeled as ingested.",
+  "defs": {
+    "main": {
+      "type": "record",
+      "key": "tid",
+      "record": {
+        "type": "object",
+        "required": ["title", "releaseType", "releaseDate", "createdAt"],
+        "properties": {
+          "title": { "type": "string", "maxLength": 2560, "maxGraphemes": 256 },
+          "releaseType": {
+            "type": "string",
+            "maxLength": 64,
+            "knownValues": ["album", "ep", "single", "split", "live", "compilation", "demo", "other"]
+          },
+          "releaseDate": {
+            "type": "string",
+            "description": "Release day as YYYY, YYYY-MM or YYYY-MM-DD: a calendar date, not an instant (no time, no timezone). Partial dates cover announcements like 'new album 2027'. May be in the future. Lexicons can't express the pattern; writers and the indexer must check it with parseReleaseDate().",
+            "minLength": 4,
+            "maxLength": 10
+          },
+          "description": { "type": "string", "maxLength": 10000, "maxGraphemes": 1000 },
+          "artwork": {
+            "type": "blob",
+            "accept": ["image/png", "image/jpeg", "image/webp"],
+            "maxSize": 2000000
+          },
+          "artworkAlt": { "type": "string", "maxLength": 10000, "maxGraphemes": 1000 },
+          "links": {
+            "type": "array",
+            "description": "Where to listen/buy. TBA links out; it never hosts audio in v0.",
+            "maxLength": 20,
+            "items": { "type": "ref", "ref": "fm.tba.defs#link" }
+          },
+          "otherArtists": {
+            "type": "array",
+            "description": "For splits and collaborations: the other bands, claimed or not (the posting account is always an artist on the release).",
+            "maxLength": 10,
+            "items": { "type": "ref", "ref": "fm.tba.defs#artistRef" }
+          },
+          "externalIds": {
+            "type": "array",
+            "description": "The release's ids in other catalogues (e.g. a MusicBrainz release group), used to deduplicate against ingested releases.",
+            "maxLength": 10,
+            "items": { "type": "ref", "ref": "fm.tba.defs#externalId" }
+          },
+          "createdAt": { "type": "string", "format": "datetime" }
+        }
+      }
+    }
+  }
+}

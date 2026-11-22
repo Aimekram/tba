@@ -1,0 +1,16 @@
+{
+  "name": "tba",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "packageManager": "pnpm@10.11.0",
+  "scripts": {
+    "lex:build": "pnpm --filter @tba/lexicons build",
+    "test": "pnpm -r test",
+    "typecheck": "pnpm -r typecheck",
+    "check": "pnpm -r check"
+  }
+}
