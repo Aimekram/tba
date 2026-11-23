@@ -13,6 +13,7 @@ apps/web/          Vite + React PWA
 apps/server/       one Node service (below)
 packages/lexicons/ schemas, generated types, record checks
 packages/core/     trust rules as tested functions (once the indexer needs them)
+packages/sandbox/  local PDS (@atproto/dev-env): integration tests + `pnpm sandbox`
 ```
 
 Both apps import `@tba/lexicons`, so browser and server validate records with the same code.
@@ -38,6 +39,7 @@ Catalogue import code (MusicBrainz, venue iCal) lives in `import/`, the only pla
 
 - **Why:** atproto has no cross-account query. Without an index, "gigs in the city" means one request per PDS per page load, reverse lookups ("lineups for this event") are impossible, and the feed can't answer fast.
 - **Scope:** directory accounts only (claimed bands, the seeder, linked Bluesky accounts of unclaimed bands). Jetstream filtered by DID, plus a `listRecords` backfill on claim.
+- **Validation is ours:** a PDS stores `fm.tba.*` records without validating them (it doesn't know our lexicons) and refuses explicit validation (tested in `packages/sandbox`). The indexer validates every record it reads and ignores invalid ones.
 - **Not copied:** fans' follows, names, avatars, posts. Read live from Bluesky's AppView.
 - **Our database:** (a) copies of public records, rebuildable anytime; (b) private data that exists only here (sessions, watches, attendance). Only (b) needs backups, and (b) is the sensitive part.
 

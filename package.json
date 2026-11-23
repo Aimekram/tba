@@ -11,6 +11,16 @@
     "lex:build": "pnpm --filter @tba/lexicons build",
     "test": "pnpm -r test",
     "typecheck": "pnpm -r typecheck",
-    "check": "pnpm -r check"
+    "check": "pnpm -r check",
+    "sandbox": "pnpm --filter @tba/sandbox start"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "better-sqlite3"
+    ],
+    "ignoredBuiltDependencies": [
+      "protobufjs",
+      "sharp"
+    ]
   }
 }

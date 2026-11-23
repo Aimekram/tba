@@ -71,7 +71,7 @@ describe('fm.tba.release', () => {
     }))
 })
 
-describe('event + lineup + confirm (SCOPE M0 step 4)', () => {
+describe('event + lineup + confirm', () => {
   const event = {
     $type: 'community.lexicon.calendar.event',
     name: 'Example Band + support',
