@@ -4,10 +4,12 @@ TBA: a chronological, algorithm-free music-scene app (bands, releases, gigs) on 
 
 ## Commands
 
-- Node 24+ (`.nvmrc`); Node 23 breaks `lex install`. pnpm workspace.
+- Node 24+ (`.nvmrc`); Node 23 breaks `lex install`. pnpm refuses other versions (`engine-strict` in `.npmrc`): run `nvm use`. pnpm workspace.
 - `pnpm install` regenerates lexicon types.
 - `pnpm test` · `pnpm typecheck` · `pnpm check` (vendored lexicons match their pins; needs network). CI runs all three on every PR.
+- `pnpm sandbox`: local PLC + PDS on ports 2582/2583 with seeded test accounts; fresh data each start.
 - Add a published lexicon: `pnpm --filter @tba/lexicons install-lexicons <nsid>`
+- pnpm blocks dependency build scripts. Allow one in root `package.json` (`pnpm.onlyBuiltDependencies`), then `pnpm install --force`.
 
 ## Never
 
@@ -20,6 +22,7 @@ TBA: a chronological, algorithm-free music-scene app (bands, releases, gigs) on 
 ## Easy to get wrong
 
 - Record trust rules live in each lexicon's `description`. Don't restate them elsewhere.
+- A PDS stores our records unvalidated. Validate every record read from the network against its lexicon.
 - Never order by `createdAt` or use it for "latest wins": the writer sets it. Use `sortAt` (earlier of `createdAt` and index time) or commit order.
 - Genres must pass `isKnownGenre`; release dates must pass `parseReleaseDate`. Lexicons can't enforce either.
 - Deletes remove data from the index, not hide it. Don't index fans. Private data stays server-side and is exportable and deletable by its owner.
